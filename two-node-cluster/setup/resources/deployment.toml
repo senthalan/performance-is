@@ -59,7 +59,7 @@ maxThreads = "500"
 acceptCount = "500"
 
 [authentication.consent]
-prompt = false
+prompt = true
 
 [admin_service]
 wsdl.enable=false
@@ -79,6 +79,3 @@ membership_scheme = "wka"
 local_member_host = "member_ip_1"
 localMemberPort = "4000"
 members = ["member_ip_2:4000", "member_ip_1:4000"]
-
-[session_data.persistence]
-enable_user_session_mapping = false
