@@ -109,7 +109,7 @@ declare -A test_scenario9=(
     [description]="Obtain a SAML 2 assertion response using redirect binding."
     [jmx]="saml/SAML2_SSO_Redirect_Binding.jmx"
     [tenantMode]=false
-    [skip]=false
+    [skip]=true
 )
 declare -A test_scenario10=(
     [name]="10-oauth_auth_code_redirect_with_consent_tenant"
