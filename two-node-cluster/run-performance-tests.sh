@@ -85,7 +85,7 @@ declare -A test_scenario6=(
     [description]="Obtain an access token and an id token using the OAuth 2.0 implicit grant type."
     [jmx]="oidc/OIDC_Implicit_Redirect_WithConsent.jmx"
     [tenantMode]=false
-    [skip]=false
+    [skip]=true
 )
 declare -A test_scenario7=(
     [name]="07-oidc_password_grant"
@@ -93,7 +93,7 @@ declare -A test_scenario7=(
     [description]="Obtain an access token and an id token using the OAuth 2.0 password grant type."
     [jmx]="oidc/OIDC_Password_Grant.jmx"
     [tenantMode]=false
-    [skip]=false
+    [skip]=true
 )
 declare -A test_scenario8=(
     [name]="08-oidc_request_path_authenticator"
