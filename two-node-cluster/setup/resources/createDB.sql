@@ -4,7 +4,8 @@ create database REG_DB;
 
 use IDENTITY_DB; source ~/wso2is/dbscripts/identity/mysql.sql;
 use IDENTITY_DB; source ~/wso2is/dbscripts/consent/mysql.sql;
-use UM_DB; source ~/wso2is/dbscripts/mysql.sql;
+-- use UM_DB; source ~/wso2is/dbscripts/mysql.sql;
+use UM_DB; source /home/ubuntu/workspace/setup/resources/userstore.sql;
 use REG_DB; source ~/wso2is/dbscripts/mysql.sql;
 
 -- add tables that could vary in different IS packs
