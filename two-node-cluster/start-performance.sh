@@ -278,12 +278,13 @@ printf "Stack creation time: %s\n" "$(format_time "$(measure_time "$stack_create
 echo ""
 echo "Getting Bastion Node Public IP..."
 echo "-----------------"
-aws cloudformation describe-stack-resources --stack-name "$stack_id"
+aws cloudformation describe-stack-resources --stack-name "$stack_id" --output json
 echo "-----------------"
-aws cloudformation describe-stacks --stack-name "$stack_id"
+aws cloudformation describe-stacks --stack-name "$stack_id" --output json
 echo "-----------------"
-bastion_instance="$(aws cloudformation describe-stack-resources --stack-name "$stack_id" --logical-resource-id WSO2BastionInstance"$random_number" | jq -r '.StackResources[].PhysicalResourceId')"
-bastion_node_ip="$(aws ec2 describe-instances --instance-ids "$bastion_instance" | jq -r '.Reservations[].Instances[].PublicIpAddress')"
+bastion_instance="$(aws cloudformation describe-stack-resources --stack-name "$stack_id" --logical-resource-id WSO2BastionInstance"$random_number" --output json | jq -r '.StackResources[].PhysicalResourceId')"
+echo "Bastion Node Public IP: $bastion_instance"
+bastion_node_ip="$(aws ec2 describe-instances --instance-ids "$bastion_instance" --output json | jq -r '.Reservations[].Instances[].PublicIpAddress')"
 echo "Bastion Node Public IP: $bastion_node_ip"
 
 echo ""
@@ -309,12 +310,12 @@ echo "WSO2 IS Node 2 Private IP: $wso2_is_2_ip"
 echo ""
 echo "Getting RDS Hostname..."
 echo "-----------------"
-aws cloudformation describe-stack-resources --stack-name "$stack_id" --logical-resource-id WSO2ISDBInstance"$random_number"
+aws cloudformation describe-stack-resources --stack-name "$stack_id" --logical-resource-id WSO2ISDBInstance"$random_number" --output json
 echo "-----------------"
-aws rds describe-db-instances --db-instance-identifier "$rds_instance"
+aws rds describe-db-instances --db-instance-identifier "$rds_instance" --output json
 echo "-----------------"
-rds_instance="$(aws cloudformation describe-stack-resources --stack-name "$stack_id" --logical-resource-id WSO2ISDBInstance"$random_number" | jq -r '.StackResources[].PhysicalResourceId')"
-rds_host="$(aws rds describe-db-instances --db-instance-identifier "$rds_instance" | jq -r '.DBInstances[].Endpoint.Address')"
+rds_instance="$(aws cloudformation describe-stack-resources --stack-name "$stack_id" --logical-resource-id WSO2ISDBInstance"$random_number" --output json | jq -r '.StackResources[].PhysicalResourceId')"
+rds_host="$(aws rds describe-db-instances --db-instance-identifier "$rds_instance" --output json | jq -r '.DBInstances[].Endpoint.Address')"
 echo "RDS Hostname: $rds_host"
 
 if [[ -z $bastion_node_ip ]]; then
