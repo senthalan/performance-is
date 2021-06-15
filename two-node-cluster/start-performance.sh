@@ -303,6 +303,7 @@ wso2is_2_instance="$(aws autoscaling describe-auto-scaling-groups --auto-scaling
 wso2_is_2_ip="$(aws ec2 describe-instances --instance-ids "$wso2is_2_instance" | jq -r '.Reservations[].Instances[].PrivateIpAddress')"
 echo "WSO2 IS Node 2 Private IP: $wso2_is_2_ip"
 
+echo ""
 echo "Getting RDS Hostname..."
 rds_instance="$(aws cloudformation describe-stack-resources --stack-name "$stack_id" --logical-resource-id WSO2ISDBInstance"$random_number" | jq -r '.StackResources[].PhysicalResourceId')"
 rds_host="$(aws rds describe-db-instances --db-instance-identifier "$rds_instance" | jq -r '.DBInstances[].Endpoint.Address')"
