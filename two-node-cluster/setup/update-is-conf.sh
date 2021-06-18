@@ -84,6 +84,8 @@ echo ""
 echo "changing permission for mysql connector"
 echo "-------------------------------------------"
 chmod 644 mysql-connector-java-*.jar
+chmod 644 resources/disruptor-3.4.4.jar
+
 
 carbon_home=$(realpath ~/wso2is)
 
