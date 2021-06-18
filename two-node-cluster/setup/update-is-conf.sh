@@ -98,6 +98,11 @@ echo "-------------------------------------------"
 cp resources/deployment.toml "$carbon_home"/repository/conf/deployment.toml
 
 echo ""
+echo "Adding log42 async the pack..."
+echo "-------------------------------------------"
+cp resources/disruptor-3.4.4.jar "$carbon_home"/lib/
+
+echo ""
 echo "Applying basic parameter changes..."
 echo "-------------------------------------------"
 sed -i 's/JVM_MEM_OPTS="-Xms256m -Xmx1024m"/JVM_MEM_OPTS="-Xms2g -Xmx2g"/g' \
@@ -111,5 +116,5 @@ sed -i "s|member_ip_2|$wso2_is_2_ip|g" "$carbon_home"/repository/conf/deployment
 echo ""
 echo "Starting WSO2 IS server..."
 echo "-------------------------------------------"
-./wso2is/bin/wso2server.sh start
+./wso2is/bin/wso2server.sh -DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector start
 sleep 100s
