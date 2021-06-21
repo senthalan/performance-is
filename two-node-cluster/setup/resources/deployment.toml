@@ -81,4 +81,4 @@ localMemberPort = "4000"
 members = ["member_ip_2:4000", "member_ip_1:4000"]
 
 [session_data.cleanup]
-pre_session_data_cleanup_thread_pool_size = "1"
+pre_session_data_cleanup_thread_pool_size = "50"
