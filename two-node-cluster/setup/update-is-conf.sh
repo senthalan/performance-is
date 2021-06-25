@@ -98,6 +98,15 @@ echo "-------------------------------------------"
 cp resources/deployment.toml "$carbon_home"/repository/conf/deployment.toml
 
 echo ""
+echo "Adding patches to the pack..."
+echo "-------------------------------------------"
+unzip -qq resources/patch0001.zip -d resources/
+chmod 644 resources/patch0001/*.jar
+mkdir "$carbon_home"/repository/components/patches/patch0001
+cp resources/patch0001/*.jar "$carbon_home"/repository/components/patches/patch0001/
+ls -l "$carbon_home"/repository/components/patches/patch0001/
+
+echo ""
 echo "Applying basic parameter changes..."
 echo "-------------------------------------------"
 sed -i 's/JVM_MEM_OPTS="-Xms256m -Xmx1024m"/JVM_MEM_OPTS="-Xms2g -Xmx2g"/g' \
@@ -113,3 +122,9 @@ echo "Starting WSO2 IS server..."
 echo "-------------------------------------------"
 ./wso2is/bin/wso2server.sh start
 sleep 100s
+
+echo "-------------------------------------------"
+echo "-------------------------------------------"
+cat "$carbon_home"/repository/logs/patches.log
+echo "-------------------------------------------"
+echo "-------------------------------------------"

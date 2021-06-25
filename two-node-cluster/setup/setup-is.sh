@@ -86,6 +86,11 @@ sudo -u ubuntu scp -r setup/resources/ "$is_host_alias":/home/ubuntu/
 sudo -u ubuntu scp wso2is.zip "$is_host_alias":/home/ubuntu/
 sudo -u ubuntu scp mysql-connector-java-*.jar "$is_host_alias":/home/ubuntu/
 
+echo ""
+echo "Copying patch Zip..."
+echo "-------------------------------------------"
+sudo -u ubuntu scp patch0001.zip "$is_host_alias":/home/ubuntu/resources
+
 sudo -u ubuntu ssh "$is_host_alias" mkdir sar setup
 sudo -u ubuntu scp workspace/setup/setup-common.sh "$is_host_alias":/home/ubuntu/setup/
 sudo -u ubuntu scp workspace/sar/install-sar.sh "$is_host_alias":/home/ubuntu/sar/

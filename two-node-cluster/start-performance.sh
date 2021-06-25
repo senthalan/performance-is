@@ -193,6 +193,11 @@ check_command unzip
 check_command jq
 check_command python
 
+echo "Downloading patch files..."
+echo "-------------------------------------------"
+wget https://github.com/senthalan/performance-is/raw/master-patch/two-node-cluster/setup/resources/patches/patch0001.zip -O patch0001.zip
+echo "-------------------------------------------"
+
 mkdir "$results_dir"
 echo ""
 echo "Results will be downloaded to $results_dir"
@@ -343,12 +348,15 @@ echo "$copy_repo_setup_command"
 $copy_repo_setup_command
 
 copy_jmeter_setup_command="scp -i $key_file -o StrictHostKeyChecking=no $jmeter_setup ubuntu@$bastion_node_ip:/home/ubuntu/"
+copy_patch_zip_command="scp -i $key_file -o "StrictHostKeyChecking=no" patch0001.zip ubuntu@$bastion_node_ip:/home/ubuntu/patch0001.zip"
 copy_is_pack_command="scp -i $key_file -o "StrictHostKeyChecking=no" $is_setup ubuntu@$bastion_node_ip:/home/ubuntu/wso2is.zip"
 copy_key_file_command="scp -i $key_file -o "StrictHostKeyChecking=no" $key_file ubuntu@$bastion_node_ip:/home/ubuntu/private_key.pem"
 copy_connector_command="scp -r -i $key_file -o "StrictHostKeyChecking=no" $results_dir/lib/* ubuntu@$bastion_node_ip:/home/ubuntu/"
 
 echo "$copy_jmeter_setup_command"
 $copy_jmeter_setup_command
+echo "$copy_patch_zip_command"
+$copy_patch_zip_command
 echo "$copy_is_pack_command"
 $copy_is_pack_command
 echo "$copy_key_file_command"
