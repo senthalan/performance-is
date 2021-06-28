@@ -98,6 +98,11 @@ echo "-------------------------------------------"
 cp resources/deployment.toml "$carbon_home"/repository/conf/deployment.toml
 
 echo ""
+echo "Adding log4j2 file to the pack..."
+echo "-------------------------------------------"
+cp resources/log4j2.properties "$carbon_home"/repository/conf/log4j2.properties
+
+echo ""
 echo "Applying basic parameter changes..."
 echo "-------------------------------------------"
 sed -i 's/JVM_MEM_OPTS="-Xms256m -Xmx1024m"/JVM_MEM_OPTS="-Xms2g -Xmx2g"/g' \
